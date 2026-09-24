@@ -1,0 +1,2 @@
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common'; import { AnalyticsService } from './analytics.service'; import { AuthGuard } from '../../common/auth.guard';
+@Controller('analytics') export class AnalyticsController {constructor(private readonly s:AnalyticsService){} @Post('events') track(@Body()dto:any){return this.s.track(dto);} @Get('dashboard') @UseGuards(AuthGuard) dashboard(){return this.s.dashboard();}}

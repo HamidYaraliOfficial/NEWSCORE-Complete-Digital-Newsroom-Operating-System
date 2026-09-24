@@ -1,0 +1,29 @@
+{
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 0,
+    "analysis": {
+      "analyzer": {
+        "news_text": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": ["lowercase"]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "id":{"type":"keyword"},
+      "title":{"type":"text","analyzer":"news_text"},
+      "subtitle":{"type":"text","analyzer":"news_text"},
+      "summary":{"type":"text","analyzer":"news_text"},
+      "lead":{"type":"text","analyzer":"news_text"},
+      "text":{"type":"text","analyzer":"news_text"},
+      "language":{"type":"keyword"},
+      "sectionId":{"type":"keyword"},
+      "slug":{"type":"keyword"},
+      "publishedAt":{"type":"date"}
+    }
+  }
+}

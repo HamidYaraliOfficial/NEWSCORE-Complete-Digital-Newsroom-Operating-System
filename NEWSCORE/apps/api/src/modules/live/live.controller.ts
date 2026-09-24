@@ -1,0 +1,3 @@
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { LiveService } from './live.service'; import { AuthGuard } from '../../common/auth.guard'; import { CurrentUser } from '../../common/current-user.decorator';
+@Controller('live') export class LiveController {constructor(private readonly service:LiveService){} @Get() list(){return this.service.list();} @Get(':slug') get(@Param('slug') slug:string){return this.service.get(slug);} @Post() @UseGuards(AuthGuard) create(@Body() dto:any){return this.service.create(dto);} @Post(':slug/updates') @UseGuards(AuthGuard) update(@Param('slug') slug:string,@Body() dto:any,@CurrentUser() u:any){return this.service.addUpdate(slug,dto,u.sub);}}

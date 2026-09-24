@@ -1,0 +1,2 @@
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common'; import { MediaService } from './media.service'; import { AuthGuard } from '../../common/auth.guard'; import { CurrentUser } from '../../common/current-user.decorator';
+@Controller('media') export class MediaController {constructor(private readonly s:MediaService){} @Get() list(){return this.s.list();} @Post('presign') @UseGuards(AuthGuard) presign(@Body()dto:any,@CurrentUser()u:any){return this.s.presign(dto,u.sub);}}
